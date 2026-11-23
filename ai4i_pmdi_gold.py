@@ -1,6 +1,6 @@
 from pyspark import pipelines as dp
 from pyspark.sql.functions import col, when, abs, rand
-from math import pi #Para o cálculo da velocidade angulas em rad/s
+from math import pi #Para o cálculo da velocidade angular em rad/s
 @dp.materialized_view(name="ai4i_pmdi.gold.ai4i_pmdi_gold")
 def ai4i_pmdi_gold():
     
