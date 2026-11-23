@@ -13,7 +13,7 @@ def ai4i_pmdi_gold():
     # ENGENHARIA DE FEATURES E VARIÁVEIS FÍSICAS (Base para as falhas)
     # =======================================================================================
     
-    # 6. Cálculo da Diferença de Temperatura (Kelvin).
+    # Cálculo da Diferença de Temperatura (Kelvin).
     # O QUE É: Obtém a magnitude da diferença térmica entre o processo e o ar ambiente.
     # RESULTADO ESPERADO: A coluna 'temp_diff_k' contendo um valor numérico absoluto.
     df_gold = df_silver.withColumn(
@@ -21,7 +21,7 @@ def ai4i_pmdi_gold():
         abs(col("process_temperature_k") - col("air_temperature_k"))
     )
     
-    # 7. Conversão da Velocidade Angular (de RPM para rad/s).
+    # Conversão da Velocidade Angular (de RPM para rad/s).
     # O QUE É: A velocidade informada em rotações por minuto é multiplicada por (2 * Pi / 60).
     # RESULTADO ESPERADO: Coluna 'rotational_speed_rad_s' formatada no Sistema Internacional de Medidas.
     df_gold = df_gold.withColumn(
@@ -29,7 +29,7 @@ def ai4i_pmdi_gold():
         col("rotational_speed_rpm") * (2 * pi / 60)
     )
     
-    # 8. Cálculo da Potência de Usinagem (Watts).
+    # Cálculo da Potência de Usinagem (Watts).
     # O QUE É: Calcula a potência exigida pelo processo através do produto entre o Torque e a Velocidade Angular.
     # RESULTADO ESPERADO: Coluna 'power_watts', crucial para engatilhar as falhas de suprimento elétrico.
     df_gold = df_gold.withColumn(
@@ -37,7 +37,7 @@ def ai4i_pmdi_gold():
         col("torque_nm") * col("rotational_speed_rad_s")
     )
     
-    # 9. Cálculo da Tensão Acumulada (minNm - Minuto-Newton Metro).
+    # Cálculo da Tensão Acumulada (minNm - Minuto-Newton Metro).
     # O QUE É: Mede o impacto mecânico latente através do produto do tempo de desgaste pelo torque.
     # RESULTADO ESPERADO: Coluna 'wear_torque_minnm' para medir a fadiga baseada no tipo do material.
     df_gold = df_gold.withColumn(
@@ -112,7 +112,7 @@ def ai4i_pmdi_gold():
     )
     
     # =======================================================================================
-    # DIAGNÓSTICO GLOBAL E LIMPEZA
+    # DIAGNÓSTICO GLOBAL 
     # =======================================================================================
     
     # Rótulo de Target (Machine Failure)
