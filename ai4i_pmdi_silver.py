@@ -178,7 +178,7 @@ def ai4i_pmdi_silver():
         for c in sensor_cols: # percorre cada sensor físico (ar, processo, rotação, torque)
             mask = pdf_telemetry[f"{c}_is_imputed"] 
             if mask.any(): 
-                pdf_telemetry.loc[mask, c] = df_imputed.loc[mask, c].clip(lower=0.0).round(1) # Grava só nas linhas imputadas com a estimativa do MICE, com negativos virando 0.0 e 1 casa decimal como padrão
+                pdf_telemetry.loc[mask, c] = df_imputed.loc[mask, c].clip(lower=0.0).round(1) # Grava só nas linhas imputadas com a estimativa do MICE, com negativos virando 0.0 e uma casa decimal como padrão
 
         #Aplicação da lei termodinâmica (Processo >= Ar)
         #Garante que a temperatura do processo nunca seja inferior à temperatura do ar ambiente.
